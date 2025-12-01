@@ -1,22 +1,29 @@
-USE MusicDB;
+-- ==========================================================
+-- 3. CONSULTAS (SELECT)
+-- ==========================================================
 
--- Consulta 1: Listar todas as músicas e seus respectivos álbuns (JOIN)
-SELECT m.titulo AS Musica, m.duracao, a.titulo AS Album
+-- 3.1 Todas as músicas com seus álbuns
+SELECT m.titulo AS Musica,
+       m.duracao,
+       a.titulo AS Album
 FROM MUSICA m
 JOIN ALBUM a ON m.id_album = a.id_album;
 
--- Consulta 2: Listar álbuns lançados após 1980 ordenados pelo ano (WHERE e ORDER BY)
-SELECT titulo, ano_lancamento
-FROM ALBUM
-WHERE ano_lancamento > 1980
-ORDER BY ano_lancamento ASC;
+-- 3.2 Artistas que participaram de Abbey Road
+SELECT art.nome AS Artista,
+       alb.titulo AS Album
+FROM ARTISTA art
+JOIN PARTICIPACAO p ON art.id_artista = p.id_artista
+JOIN ALBUM alb ON p.id_album = alb.id_album
+WHERE alb.titulo = 'Abbey Road';
 
--- Consulta 3: Contar quantas músicas cada álbum possui (GROUP BY e JOIN)
-SELECT a.titulo, COUNT(m.id_musica) AS total_musicas
-FROM ALBUM a
-LEFT JOIN MUSICA m ON a.id_album = m.id_album
-GROUP BY a.titulo;
+-- 3.3 Todas as autorias
+SELECT m.titulo AS Musica,
+       ar.nome AS Artista
+FROM AUTORIA au
+JOIN ARTISTA ar ON au.id_artista = ar.id_artista
+JOIN MUSICA m ON au.id_musica = m.id_musica;
 
--- Consulta 4: Buscar artistas brasileiros (WHERE com LIKE)
+-- 3.4 Listar artistas brasileiros (Filtro simples)
 SELECT * FROM ARTISTA 
-WHERE nacionalidade LIKE 'Brasil';
+WHERE nacionalidade = 'Brasil';
