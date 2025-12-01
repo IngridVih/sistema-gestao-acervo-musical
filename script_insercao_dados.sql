@@ -1,3 +1,5 @@
+USE SGAM_MusicDB;
+
 -- ==========================================================
 -- 2. INSERÇÃO DE DADOS (DML)
 -- ==========================================================
@@ -27,6 +29,7 @@ INSERT INTO PARTICIPACAO (id_artista, id_album) VALUES
 (1, 1), -- Legião Urbana → Dois
 (2, 2); -- Beatles → Abbey Road
 
+-- AUTORIA (Sem a coluna papel, conforme diagrama)
 INSERT INTO AUTORIA (id_artista, id_musica) VALUES
 (3, 1),
 (3, 2),
