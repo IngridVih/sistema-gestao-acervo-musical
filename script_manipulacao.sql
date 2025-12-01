@@ -24,6 +24,12 @@ UPDATE ARTISTA
 SET nacionalidade = 'Inglaterra' 
 WHERE nome = 'The Beatles';
 
+-- ----------------------------------------------------------
+-- VISUALIZAR AS MUDANÇAS DOS UPDATES
+-- ----------------------------------------------------------
+SELECT * FROM ALBUM;   -- Veja o ano mudar para 1987
+SELECT * FROM MUSICA;  -- Veja a duração mudar
+SELECT * FROM ARTISTA; -- Veja a nacionalidade mudar
 
 -- === DELETES (Total: 3) ===
 
@@ -39,3 +45,11 @@ WHERE id_artista = 1 AND id_album = 1;
 -- Isso apagará automaticamente suas autorias devido ao ON DELETE CASCADE
 DELETE FROM ARTISTA 
 WHERE nome = 'Renato Russo';
+
+-- ----------------------------------------------------------
+-- VISUALIZAR AS MUDANÇAS DOS DELETES
+-- ----------------------------------------------------------
+SELECT * FROM MUSICA;       -- "Eduardo e Mônica" deve ter sumido
+SELECT * FROM PARTICIPACAO; -- A linha (1,1) deve ter sumido
+SELECT * FROM ARTISTA;      -- "Renato Russo" deve ter sumido
+SELECT * FROM AUTORIA;      -- As autorias do Renato (id 3) devem ter sumido (Cascade)
